@@ -1,3 +1,4 @@
+{% import 'macros.html' as macro%}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -14,32 +15,27 @@
 
 </head>
 <body>
+    <style>
+        .container{
+            text-align: left;
+        }
+        h3{
+            color: rgb(122, 76, 19);
+            
+        }
+        p{
+            color: burlywood;
+        }
+    </style>
     <h1> Hello World </h1>
     <div class="container">
-        <style>
-            .container{
-                text-align: left;
-            }
-            h3{
-                color: rgb(122, 76, 19);
-                
-            }
-            p{
-                color: burlywood;
-            }
-        </style>
+
         <p>WELCOME TO THE BEST NEWS WEBSITE</p>
 
     </div>
     <!-- News section  -->
-    <h3> NEWS FROM ALL OVER</h3>
-    {% for new in news %}
-        <div  class="container">
-            <h3>{{ new.title}}</h3>
-            <p>{{new.author}} </p>
-            <p> Visit <a href="{{new.url}}">{{new.title}}</a></p>
-            
-        </div>
-    {% endfor %}
+
+    {{macro.displayNewsList(news)}}
+
 </body>
 </html>

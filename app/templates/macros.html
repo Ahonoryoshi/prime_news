@@ -1,7 +1,12 @@
-{% macro displayMovieList(movie_list) %}
+{% macro displayNewsList(news_list) %}
 
-    {% for movie in movie_list %}
-        <li>{{ movie.title}}</li>
-    {% endfor %}
+{% for new in news_list %}
+<div  class="container">
+    <h3>{{ new.title}}</h3>
+    <p>{{new.author}} </p>
+    <p> Visit <a href="{{new.url}}">{{new.title}}</a></p>
+    
+</div>
+{% endfor %}
 
 {% endmacro %}
