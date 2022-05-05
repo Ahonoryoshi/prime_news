@@ -18,22 +18,26 @@
     <div class="container">
         <style>
             .container{
-                text-align: center;
+                text-align: left;
+            }
+            h3{
+                color: rgb(122, 76, 19);
+                
+            }
+            p{
+                color: burlywood;
             }
         </style>
         <p>WELCOME TO THE BEST NEWS WEBSITE</p>
 
     </div>
-    <div class="container">
-        <!-- News section  -->
-        <h3> NEWS FROM ALL OVER</h3>
-         <ul>
-            {% for new in news %}
-                <li>{{ new.title}} by {{new.author}}</li>
-            {% endfor %}
-        </ul>
-
-    </div>
-    
+    <!-- News section  -->
+    <h3> NEWS FROM ALL OVER</h3>
+    {% for new in news %}
+        <div  class="container">
+            <h3>{{ new.title}}</h3>
+            <p>{{new.author}} </p>
+        </div>
+    {% endfor %}
 </body>
 </html>

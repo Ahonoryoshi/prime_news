@@ -18,7 +18,6 @@ class ProdConfig(Config):
     TOP_HEADLINES_BASE_API_URL = 'https://newsapi.org/v2/top-headlines?sources={}&apiKey={}'
     BUSINESS_TOP_HEADLINES = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey={}"
 
-
 class DevConfig(Config):
     '''
     Development  configuration child class
