@@ -24,6 +24,16 @@
         <p>WELCOME TO THE BEST NEWS WEBSITE</p>
 
     </div>
+    <div class="container">
+        <!-- News section  -->
+        <h3> NEWS FROM ALL OVER</h3>
+         <ul>
+            {% for new in news %}
+                <li>{{ new.title}} by {{new.author}}</li>
+            {% endfor %}
+        </ul>
+
+    </div>
     
 </body>
 </html>
