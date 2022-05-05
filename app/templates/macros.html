@@ -1,12 +1,33 @@
 {% macro displayNewsList(news_list) %}
 
-{% for new in news_list %}
-<div  class="container">
-    <h3>{{ new.title}}</h3>
-    <p>{{new.author}} </p>
-    <p> Visit <a href="{{new.url}}">{{new.title}}</a></p>
-    
-</div>
-{% endfor %}
+    {% for new in news_list %}
+        <div  class="container">
+            <h3>{{ new.name}}</h3>
+            <p>{{new.id}} </p>
+            <p> Visit <a href="{{new.url}}">{{new.name}}</a></p>
+            <li class="text-center">
+                <a href="/articles/{{new.id}}">
+                    {{ new.name|truncate(10)}}</a>
+            </li>
+
+            
+        </div>
+    {% endfor %}
 
 {% endmacro %}
+
+{% macro displayArticlesList(arts_list) %}
+
+    {% for article in arts_list %}
+        <div class="col-xs-12 col-sm-4 col-md-2 col-lg-2 movie-card">
+            <img src="{{ article.urlToImage }}" alt="{{ article.title }} poster" class="img-responsive">
+            <li class="text-center">
+                <a href="/article/{{article.title}}">
+                    {{ article.title|truncate(10)}}</a>
+            </li>
+        </div>
+
+    {% endfor %}
+
+{% endmacro %}
+

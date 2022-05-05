@@ -1,0 +1,46 @@
+
+{% extends 'base.html'%}
+{% import 'macros.html' as macro%}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+        <title> {{ title }}</title>
+        {% else %}
+        <title> Welcome to the best News website </title>
+    {% endif %}
+
+
+</head>
+<body>
+    <p>Hello</p>
+    <!-- Content block -->
+    {% block content %}
+
+    <style>
+        .container{
+            text-align: left;
+        }
+        h3{
+            color: rgb(122, 76, 19);
+            
+        }
+        p{
+            color: burlywood;
+        }
+    </style>
+    <div class="container">
+
+        <p>NEWS ARTICLES</p>
+
+    </div>
+    <!-- News Articles section  -->
+    {{macro.displayArticlesList(articles)}}
+    {% endblock%}
+
+</body>
+</html>
