@@ -14,6 +14,7 @@ class ProdConfig(Config):
         Config: The parent configuration class with General configuration settings
     '''
     NEWS_API_BASE_URL = "https://newsapi.org/v2/sources?apiKey={}"
+    TYPICAL_NEWS_API =  "https://newsapi.org/v2/{}?domains=wsj.com&apikey={}"
     EVERYTHING_BASE_API_URL = "https://newsapi.org/v2/everything?domains=wsj.com&apikey={}"
     TOP_HEADLINES_BASE_API_URL = 'https://newsapi.org/v2/top-headlines?sources={}&apiKey={}'
     BUSINESS_TOP_HEADLINES = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey={}"

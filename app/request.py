@@ -1,5 +1,8 @@
+from typing import NewType
 from app import app
 import urllib.request,json
+
+from app.models.news_article import News_article
 from .models import news
 News = news.News
 
@@ -52,6 +55,24 @@ def process_results(news_list):
             news_results.append(new_news)
 
     return news_results
+TOP_URL = 'https://newsapi.org/v2/top-headlines?sources={}&apiKey=367d2b9d52254328a2263a46260220e4'
+def get_articles(source_id):
+    get_articles_url = TOP_URL.format(source_id)
+    with urllib.request.urlopen(get_articles_url) as url:
+        news_articles_data = url.read()
+        news_articles_response = json.loads(news_articles_data)
 
+        news_article_object = None
+        if news_articles_response:
+            source = news_articles_response.get('source')
+            author = news_articles_response.get('author')
+            title = news_articles_response.get('title')
+            description = news_articles_response.get('description')
+            the_url = news_articles_response.get('url')
+            content = news_articles_response.get('content')
+
+            news_article_object = News_article(source, author,title, id,description,the_url,content)
+
+    return news_article_object
 
 
