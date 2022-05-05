@@ -1,3 +1,4 @@
+{% extends 'base.html'%}
 {% import 'macros.html' as macro%}
 
 <!DOCTYPE html>
@@ -15,6 +16,9 @@
 
 </head>
 <body>
+    <!-- Content block -->
+    {% block content %}
+
     <style>
         .container{
             text-align: left;
@@ -36,6 +40,7 @@
     <!-- News section  -->
 
     {{macro.displayNewsList(news)}}
+    {% endblock%}
 
 </body>
 </html>
