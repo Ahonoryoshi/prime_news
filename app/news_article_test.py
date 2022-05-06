@@ -16,6 +16,21 @@ class News_articleTest(unittest.TestCase):
     def test_instance(self):
         self.assertTrue(isinstance(self.new_news_article,News_article))
 
+    def test_init(self):
+        '''
+        test_init test case to test if the object is initialized properly
+        '''
+        self.assertEqual(self.new_news_article.source, 'bbc')
+        self.assertEqual(self.new_news_article.author, 'qw')
+        self.assertEqual(self.new_news_article.title, 'sd')
+        self.assertEqual(self.new_news_article.description, 'wdw')
+        self.assertEqual(self.new_news_article.url, 'dq')
+        self.assertEqual(self.new_news_article.content, 'ad')
+        self.assertEqual(self.new_news_article.urlToImage, 'k')
+        self.assertEqual(self.new_news_article.publishedAt, 'we')
+
+
+
 
 if __name__ == '__main__':
     unittest.main()
