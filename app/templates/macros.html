@@ -15,6 +15,8 @@
 
 {% endmacro %}
 
+
+
 {% macro displayArticlesList(arts_list) %}
 
 
@@ -165,3 +167,18 @@
 
 {% endmacro %}
 
+{% macro displayHeadlinesList(headlines_list) %}
+    {% for headline in headlines_list %}
+        <div class="container content">
+            <img src="{{ headline.urlToImage }}" alt="{{ headline.title }} poster" class="img-responsive">
+                <a href="{{headline.url}}" target=”_blank”>
+                    
+                    <h3>{{ headline.title }}</h3>
+                </a>
+                <p class="des">{{headline.description}}</p>
+                <p class="con">{{headline.content}}</p>
+        </div>
+
+    {% endfor %}
+
+{% endmacro %}

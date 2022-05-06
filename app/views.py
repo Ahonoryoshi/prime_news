@@ -1,6 +1,7 @@
+from turtle import title
 from flask import render_template
 from app import app
-from .request import get_news, get_articles
+from .request import get_news, get_articles, get_headlines
 
 # Views
 @app.route('/')
@@ -40,3 +41,9 @@ def articles(source):
     #title = f'{article.title}'
 
     #return render_template('article.html',article = article)
+@app.route('/headlines')
+def headlines():
+    headlines = get_headlines()
+    title = 'headlines'
+
+    return render_template('headlines.html', headlines = headlines, title = title)
