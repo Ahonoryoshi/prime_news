@@ -59,6 +59,7 @@ def process_results(news_list):
 
     return news_results
 TOP_URL = 'https://newsapi.org/v2/everything?sources={}&apiKey=367d2b9d52254328a2263a46260220e4'
+HEADLINES_URL = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=367d2b9d52254328a2263a46260220e4'
 
 def get_articles(source_id):
     """
@@ -147,3 +148,19 @@ def get_article(title):
 
     return article_object
 
+def get_headlines():
+    """
+    Function to get news to display on homepage
+    """
+    #news_url = base_url.format(api_key)
+    headlines_url = HEADLINES_URL
+
+    with urllib.request.urlopen(headlines_url) as url:
+        get_headlines_data = url.read()
+        get_news_response = json.loads(get_headlines_data)
+        headlines_results = None
+        
+        headlines_results_list = get_news_response['articles']
+        headlines_results = process_arts(headlines_results_list)
+
+    return headlines_results
