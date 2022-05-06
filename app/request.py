@@ -12,16 +12,20 @@ News = news.News
 # Getting api key
 api_key = app.config['NEWS_API_KEY']
 
-# Getting the news base url
-#base_url = app.config['NEWS_API_BASE_URL']
-base_url=  "https://newsapi.org/v2/sources?apiKey=367d2b9d52254328a2263a46260220e4"
+
+# Getting the news  urls
+base_url = app.config['NEWS_API_BASE_URL']
+top_url = app.config['TOP_URL']
+headline_url = app.config['HEADLINES_URL']
+search_base_url = app.config['SEARCH_NEWS_URL']
+
 
 def get_news():
     """
     Function to get news to display on homepage
     """
-    #news_url = base_url.format(api_key)
-    news_url = base_url
+    news_url = base_url.format(api_key)
+    #news_url = base_url
 
     with urllib.request.urlopen(news_url) as url:
         get_news_data = url.read()
@@ -60,15 +64,15 @@ def process_results(news_list):
             news_results.append(new_news)
 
     return news_results
-TOP_URL = 'https://newsapi.org/v2/everything?sources={}&apiKey=367d2b9d52254328a2263a46260220e4'
-HEADLINES_URL = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=367d2b9d52254328a2263a46260220e4'
+#TOP_URL = 'https://newsapi.org/v2/everything?sources={}&apiKey=367d2b9d52254328a2263a46260220e4'
+#HEADLINES_URL = 'https://newsapi.org/v2/top-headlines?country=us&apiKey=367d2b9d52254328a2263a46260220e4'
 
 def get_articles(source_id):
     """
     Function to get news to display on homepage
     """
     #news_url = base_url.format(api_key)
-    arts_url = TOP_URL.format(source_id)
+    arts_url = top_url.format(source_id,api_key)
 
     with urllib.request.urlopen(arts_url) as url:
         get_arts_data = url.read()
@@ -134,34 +138,13 @@ def process_arts(arts_list):
 
     return arts_results
 
-def get_article(title):
-    get_article_url = TOP_URL.format(title)
-
-    with urllib.request.urlopen(get_article_url) as url:
-        article_data = url.read()
-        article_response = json.loads(article_data)
-
-        article_object = None
-        if article_response:
-            source = article_response.get('source')
-        author = article_response.get('author')
-        title = article_response.get('title')
-        description = article_response.get('description')
-        the_url = article_response.get('url')
-        content = article_response.get('content')
-        urlToImage = article_response.get('urlToImage')
-        publishedAt = article_response.get('publishedAt')
-
-        article_object = News_article(source, author, title, description, the_url, content,urlToImage,publishedAt )
-
-    return article_object
 
 def get_headlines():
     """
     Function to get news to display on homepage
     """
     #news_url = base_url.format(api_key)
-    headlines_url = HEADLINES_URL
+    headlines_url = headline_url.format(api_key)
 
     with urllib.request.urlopen(headlines_url) as url:
         get_headlines_data = url.read()
@@ -174,7 +157,7 @@ def get_headlines():
     return headlines_results
 
 def search_news(country):
-    search_news_url =  'https://newsapi.org/v2/everything?q={}&apiKey=367d2b9d52254328a2263a46260220e4'.format(country)
+    search_news_url = search_base_url.format(country,api_key)
     with urllib.request.urlopen(search_news_url) as url:
         search_news_data = url.read()
         search_news_response = json.loads(search_news_data)
