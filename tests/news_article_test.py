@@ -1,5 +1,6 @@
 import unittest
 from ..app.models import News_article
+from ..app.models import News
 
 
 class News_articleTest(unittest.TestCase):
