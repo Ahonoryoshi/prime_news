@@ -2,7 +2,12 @@ class Config:
     '''
     General configuration parent class
     '''
-    pass
+
+    NEWS_API_BASE_URL =  "https://newsapi.org/v2/sources?apiKey={}"
+    TOP_URL = 'https://newsapi.org/v2/everything?sources={}&apiKey={}'
+    HEADLINES_URL = 'https://newsapi.org/v2/top-headlines?country=us&apiKey={}'
+    SEARCH_NEWS_URL =  'https://newsapi.org/v2/everything?q={}&apiKey={}'
+    
 
 
 
@@ -13,11 +18,7 @@ class ProdConfig(Config):
     Args:
         Config: The parent configuration class with General configuration settings
     '''
-    NEWS_API_BASE_URL = "https://newsapi.org/v2/sources?apiKey={}"
-    TYPICAL_NEWS_API =  "https://newsapi.org/v2/{}?domains=wsj.com&apikey={}"
-    EVERYTHING_BASE_API_URL = "https://newsapi.org/v2/everything?domains=wsj.com&apikey={}"
-    TOP_HEADLINES_BASE_API_URL = 'https://newsapi.org/v2/top-headlines?sources={}&apiKey={}'
-    BUSINESS_TOP_HEADLINES = "https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey={}"
+    
 
 class DevConfig(Config):
     '''

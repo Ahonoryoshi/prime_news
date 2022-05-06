@@ -14,11 +14,12 @@ class News_articleTest(unittest.TestCase):
         self.new_news_article = News_article('bbc','qw','sd','wdw','dq','ad', 'k', 'we')
 
     def test_instance(self):
+        '''Test to check if object is of type News_article'''
         self.assertTrue(isinstance(self.new_news_article,News_article))
 
     def test_init(self):
         '''
-        test_init test case to test if the object is initialized properly
+        test_init test case to test if the news_article object is initialized properly
         '''
         self.assertEqual(self.new_news_article.source, 'bbc')
         self.assertEqual(self.new_news_article.author, 'qw')
