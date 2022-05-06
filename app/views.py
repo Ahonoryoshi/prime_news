@@ -1,7 +1,7 @@
-from turtle import title
+from turtle import tiltangle, title
 from flask import render_template
 from app import app
-from .request import get_news, get_articles, get_headlines
+from .request import get_news, get_articles, get_headlines, search_news
 
 # Views
 @app.route('/')
@@ -47,3 +47,14 @@ def headlines():
     title = 'headlines'
 
     return render_template('headlines.html', headlines = headlines, title = title)
+
+@app.route('/search/<news_name>')
+def search(news_name):
+    '''
+    View function to display the search results
+    '''
+    news_name_list = news_name.split(" ")
+    news_name_format = "+".join(news_name_list)
+    searched_news = search_news(news_name_format)
+    title = f'search results for {news_name}'
+    return render_template('search.html',newws = searched_news, title = title)
