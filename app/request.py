@@ -85,25 +85,6 @@ def get_articles(source_id):
     return arts_results
 
 
-'''def get_articles(source_id):
-    get_articles_url = TOP_URL.format(source_id)
-    with urllib.request.urlopen(get_articles_url) as url:
-        news_articles_data = url.read()
-        news_articles_response = json.loads(news_articles_data)
-
-        news_article_object = None
-        if news_articles_response:
-            source = news_articles_response.get('source')
-            author = news_articles_response.get('author')
-            title = news_articles_response.get('title')
-            description = news_articles_response.get('description')
-            the_url = news_articles_response.get('url')
-            content = news_articles_response.get('content')
-
-            news_article_object = News_article(source, author,title, id,description,the_url,content)
-
-    return news_article_object'''
-
 def process_arts(arts_list):
     """
     Function  that processes the articles result and transform them to a list of Objects
@@ -126,14 +107,14 @@ def process_arts(arts_list):
         urlToImage = article.get('urlToImage')
         publishedA = article.get('publishedAt')
         d = datetime.fromisoformat(publishedA[:-1]).astimezone(timezone.utc)
-
-        #pub = publishedA.strptime()
         publishedAt = d.strftime("%B %d, %Y")
+        time = d.strftime("%H:%M:%S")
+
 
         #publishedAt = pub.strftime("%B %d, %Y")
         
         if urlToImage:
-            new_article = News_article(source, author, title, description, the_url, content,urlToImage,publishedAt )
+            new_article = News_article(source, author, title, description, the_url, content,urlToImage,publishedAt,time )
             arts_results.append(new_article)
 
     return arts_results

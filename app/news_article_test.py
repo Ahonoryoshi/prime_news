@@ -11,7 +11,7 @@ class News_articleTest(unittest.TestCase):
         '''
         Set up method that will run before every Test
         '''
-        self.new_news_article = News_article('bbc','qw','sd','wdw','dq','ad', 'k', 'we')
+        self.new_news_article = News_article('bbc','qw','sd','wdw','dq','ad', 'k', 'we','8pm')
 
     def test_instance(self):
         '''Test to check if object is of type News_article'''
@@ -29,6 +29,7 @@ class News_articleTest(unittest.TestCase):
         self.assertEqual(self.new_news_article.content, 'ad')
         self.assertEqual(self.new_news_article.urlToImage, 'k')
         self.assertEqual(self.new_news_article.publishedAt, 'we')
+        self.assertEqual(self.new_news_article.time, '8pm' )
 
 
 
