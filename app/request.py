@@ -2,6 +2,8 @@ from curses.panel import top_panel
 from typing import NewType
 from app import app
 import urllib.request,json
+from datetime import datetime
+from datetime import timezone
 
 from app.models.news_article import News_article
 from .models import news
@@ -118,7 +120,13 @@ def process_arts(arts_list):
         the_url = article.get('url')
         content = article.get('content')
         urlToImage = article.get('urlToImage')
-        publishedAt = article.get('publishedAt')
+        publishedA = article.get('publishedAt')
+        d = datetime.fromisoformat(publishedA[:-1]).astimezone(timezone.utc)
+
+        #pub = publishedA.strptime()
+        publishedAt = d.strftime("%B %d, %Y")
+
+        #publishedAt = pub.strftime("%B %d, %Y")
         
         if urlToImage:
             new_article = News_article(source, author, title, description, the_url, content,urlToImage,publishedAt )

@@ -1,5 +1,6 @@
 from turtle import tiltangle, title
-from flask import render_template
+from flask import render_template,request,redirect,url_for
+from datetime import datetime
 from app import app
 from .request import get_news, get_articles, get_headlines, search_news
 
@@ -17,7 +18,14 @@ def index():
     print(news)
     title = 'Home - Welcome to The best Movie Review Website Online'
     message = 'Hello World'
-    return render_template('index.html', title = title,message=message, news= news)
+    search_news = request.args.get('news_query')
+    if search_news:
+        return redirect(url_for('search',news_name=search_news))
+    else:
+        return render_template('index.html', title = title,message=message, news= news)
+
+
+    
 
     
 
