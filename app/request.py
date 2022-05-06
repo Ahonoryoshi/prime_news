@@ -1,23 +1,39 @@
 from curses.panel import top_panel
 from typing import NewType
-from app import app
+#from app import app
 import urllib.request,json
+from .models import News,News_article
 from datetime import datetime
 from datetime import timezone
+#from app.models.news_article import News_article
+#from .models import news
 
-from app.models.news_article import News_article
-from .models import news
-News = news.News
+#News = news.News
 
 # Getting api key
-api_key = app.config['NEWS_API_KEY']
+#api_key = app.config['NEWS_API_KEY']
+api_key = '367d2b9d52254328a2263a46260220e4'
 
 
 # Getting the news  urls
-base_url = app.config['NEWS_API_BASE_URL']
-top_url = app.config['TOP_URL']
-headline_url = app.config['HEADLINES_URL']
-search_base_url = app.config['SEARCH_NEWS_URL']
+#base_url = app.config['NEWS_API_BASE_URL']
+#top_url = app.config['TOP_URL']
+#headline_url = app.config['HEADLINES_URL']
+#search_base_url = app.config['SEARCH_NEWS_URL']
+base_url = None
+top_url = None
+headline_url = None
+search_base_url = None
+
+def configure_request(app):
+    global api_key,base_url,top_url,headline_url,search_base_url
+    #api_key = app.config['NEWS_API_KEY']
+    api_key= '367d2b9d52254328a2263a46260220e4'
+    base_url = app.config['NEWS_API_BASE_URL']
+    top_url = app.config['TOP_URL']
+    headline_url = app.config['HEADLINES_URL']
+    search_base_url = app.config['SEARCH_NEWS_URL']
+
 
 
 def get_news():
@@ -85,6 +101,25 @@ def get_articles(source_id):
     return arts_results
 
 
+'''def get_articles(source_id):
+    get_articles_url = TOP_URL.format(source_id)
+    with urllib.request.urlopen(get_articles_url) as url:
+        news_articles_data = url.read()
+        news_articles_response = json.loads(news_articles_data)
+
+        news_article_object = None
+        if news_articles_response:
+            source = news_articles_response.get('source')
+            author = news_articles_response.get('author')
+            title = news_articles_response.get('title')
+            description = news_articles_response.get('description')
+            the_url = news_articles_response.get('url')
+            content = news_articles_response.get('content')
+
+            news_article_object = News_article(source, author,title, id,description,the_url,content)
+
+    return news_article_object'''
+
 def process_arts(arts_list):
     """
     Function  that processes the articles result and transform them to a list of Objects
@@ -107,8 +142,11 @@ def process_arts(arts_list):
         urlToImage = article.get('urlToImage')
         publishedA = article.get('publishedAt')
         d = datetime.fromisoformat(publishedA[:-1]).astimezone(timezone.utc)
+        
+        #pub = publishedA.strptime()
         publishedAt = d.strftime("%B %d, %Y")
         time = d.strftime("%H:%M:%S")
+
 
 
         #publishedAt = pub.strftime("%B %d, %Y")

@@ -1,11 +1,13 @@
 from turtle import tiltangle, title
-from flask import render_template,request,redirect,url_for
 from datetime import datetime
-from app import app
-from .request import get_news, get_articles, get_headlines, search_news
+
+from flask import render_template,request,redirect,url_for
+#from app import app
+from . import main
+from ..request import get_news, get_articles, get_headlines, search_news
 
 # Views
-@app.route('/')
+@main.route('/')
 def index():
 
     '''
@@ -16,11 +18,11 @@ def index():
     # Getting popular movie
     news = get_news()
     print(news)
-    title = 'Home - Welcome to The best Movie Review Website Online'
+    title = 'Home - Welcome to The best News Review Website Online'
     message = 'Hello World'
     search_news = request.args.get('news_query')
     if search_news:
-        return redirect(url_for('search',news_name=search_news))
+        return redirect(url_for('main.search',news_name=search_news))
     else:
         return render_template('index.html', title = title,message=message, news= news)
 
@@ -29,7 +31,7 @@ def index():
 
     
 
-@app.route('/articles/<source>')
+@main.route('/articles/<source>')
 def articles(source):
 
     '''
@@ -49,14 +51,14 @@ def articles(source):
     #title = f'{article.title}'
 
     #return render_template('article.html',article = article)
-@app.route('/headlines')
+@main.route('/headlines')
 def headlines():
     headlines = get_headlines()
     title = 'headlines'
 
     return render_template('headlines.html', headlines = headlines, title = title)
 
-@app.route('/search/<news_name>')
+@main.route('/search/<news_name>')
 def search(news_name):
     '''
     View function to display the search results
